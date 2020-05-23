@@ -1,6 +1,6 @@
 FROM ubuntu:focal
 
-RUN apt-get update && apt-get install software-properties-common 
+RUN apt-get update && apt-get install software-properties-common -y
 RUN add-apt-repository ppa:avsm/ppa
 RUN apt-get update && apt-get install --no-install-recommends -y m4 opam bubblewrap make gcc build-essential python3.8
 RUN opam init --disable-sandboxing
