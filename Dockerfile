@@ -1,6 +1,7 @@
-FROM debian:bionic
+FROM ubuntu:bionic
 
-RUN add-apt-repository ppa:avsm/ppa
+RUN apt-get update && apt-get install software-properties-common -y
+RUN apt-get update && add-apt-repository ppa:avsm/ppa
 RUN apt-get update && apt-get install --no-install-recommends -y m4 opam bubblewrap make gcc build-essential python3.8
 RUN opam init --disable-sandboxing
 RUN opam switch create 4.10.0
