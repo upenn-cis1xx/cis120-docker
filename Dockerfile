@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:bionic
 
 RUN apt-get update && apt-get install software-properties-common -y
 RUN add-apt-repository ppa:avsm/ppa
