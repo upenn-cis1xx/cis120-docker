@@ -1,4 +1,4 @@
-FROM debian:bionic
+FROM ubuntu:bionic
 
 RUN add-apt-repository ppa:avsm/ppa
 RUN apt-get update && apt-get install --no-install-recommends -y m4 opam bubblewrap make gcc build-essential python3.8
