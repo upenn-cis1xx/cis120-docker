@@ -1,2 +1,2 @@
 # ocaml-docker
-A container with ocaml and all CIS120-required ocaml deps installed
+A container with all CIS120-required java & ocaml deps installed
