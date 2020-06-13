@@ -1,7 +1,7 @@
 FROM openjdk:8-alpine
 
 RUN apk update \
-    && apk add --no-cache --update m4 opam bubblewrap make gcc g++ python3 git bash
+    && apk add --no-cache --update m4 opam bubblewrap make gcc g++ python3>3.8.0 git bash
 RUN opam init --disable-sandboxing -a --shell=bash
 RUN opam switch create 4.10.0
 # RUN opam repo add cis120-opam https://github.com/KeenWill/opam-repository.git
