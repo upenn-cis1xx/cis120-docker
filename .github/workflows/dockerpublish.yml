@@ -35,4 +35,4 @@ jobs:
           password: ${{ secrets.CIS120_DOCKERHUB_TOKEN }}
 
       - name: Push image
-        run: docker image push --all-tags $DOCKERHUB_USER/$IMAGE_NAME
+        run: docker image push $DOCKERHUB_USER/$IMAGE_NAME:${{ matrix.dockerfiles }}-${{ matrix.arch }}
