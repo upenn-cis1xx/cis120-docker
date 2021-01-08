@@ -29,7 +29,7 @@ jobs:
 
       - name: Build image
         run: |
-          docker buildx --platform ${{ matrix.arch }} --file ${{ matrix.dockerfiles }}.dockerfile --tag $DOCKERHUB_USER/$IMAGE_NAME:${{ github.sha }} .
+          docker buildx build --platform ${{ matrix.arch }} --file ${{ matrix.dockerfiles }}.dockerfile --tag $DOCKERHUB_USER/$IMAGE_NAME:${{ github.sha }} .
           docker tag $DOCKERHUB_USER/$IMAGE_NAME:${{ github.sha }} $DOCKERHUB_USER/$IMAGE_NAME:${{ matrix.dockerfiles }}-${{ matrix.arch }}
 
       - name: Login to Docker Hub
