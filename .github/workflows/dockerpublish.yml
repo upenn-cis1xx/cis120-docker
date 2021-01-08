@@ -34,4 +34,3 @@ jobs:
         run: |
           export TAG=${{ env.DOCKERHUB_USER }}/${{ env.IMAGE_NAME }}:${{ matrix.dockerfiles }}-${{ matrix.arch }}
           docker buildx build --push --platform ${{ matrix.arch }} --file ${{ matrix.dockerfiles }}.dockerfile --tag $TAG .
-          docker image push $TAG
