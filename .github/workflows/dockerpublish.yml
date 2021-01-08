@@ -2,54 +2,41 @@ name: Docker Publish
 
 on:
   push:
-    # Publish `master` as Docker `latest` image.
     branches:
-      - master
-
-    # Publish `v1.2.3` tags as releases.
-    tags:
-      - v*
-
-  # Run tests for any PRs.
-  pull_request:
+      - main
 
 env:
+  DOCKERHUB_USER: cis120
   IMAGE_NAME: cis120-docker
 
 jobs:
-  # Push image to GitHub Packages.
-  # See also https://docs.docker.com/docker-hub/builds/
   push:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
-
+    strategy:
+      matrix:
+        arch: ['amd64', 'arm64']
+        dockerfiles: ['alpine', 'ubuntu', 'alpine-java', 'alpine-ocaml']
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Builder instance name
+        run: echo ${{ steps.buildx.outputs.name }}
 
       - name: Build image
-        run: docker build . --file Dockerfile --tag $IMAGE_NAME
+        run: |
+          docker buildx --platform ${{ matrix.arch }} --file ${{ matrix.dockerfiles }}.dockerfile --tag $DOCKERHUB_USER/$IMAGE_NAME:${{ GITHUB_SHA }} .
+          docker tag $DOCKERHUB_USER/$IMAGE_NAME:${{ GITHUB_SHA }} $DOCKERHUB_USER/${{ matrix.dockerfiles }}
 
-      - name: Log into registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.CIS120_DOCKERHUB_USERNAME }}
+          password: ${{ secrets.CIS120_DOCKERHUB_TOKEN }}
 
       - name: Push image
-        run: |
-          IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
-          
-          # Change all uppercase to lowercase
-          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-
-          # Strip git ref prefix from version
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-
-          # Strip "v" prefix from tag name
-          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-
-          # Use Docker `latest` tag convention
-          [ "$VERSION" == "master" ] && VERSION=latest
-
-          echo IMAGE_ID=$IMAGE_ID
-          echo VERSION=$VERSION
-
-          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-          docker push $IMAGE_ID:$VERSION
+        run: docker image push --all-tags $DOCKERHUB_USER/$IMAGE_NAME
