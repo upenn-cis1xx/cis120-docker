@@ -30,10 +30,8 @@ jobs:
           username: ${{ env.DOCKERHUB_USER }}
           password: ${{ secrets.CIS120_DOCKERHUB_TOKEN }}
 
-      - name: Build image
+      - name: Build and push image
         run: |
           docker buildx build --platform ${{ matrix.arch }} --file ${{ matrix.dockerfiles }}.dockerfile \
             --tag ${{ env.DOCKERHUB_USER }}/${{ env.IMAGE_NAME }}:${{ matrix.dockerfiles }}-${{ matrix.arch }} .
-
-      - name: Push image
-        run: docker image push ${{ env.DOCKERHUB_USER }}/${{ env.IMAGE_NAME }}:${{ matrix.dockerfiles }}-${{ matrix.arch }}
+          docker image push ${{ env.DOCKERHUB_USER }}/${{ env.IMAGE_NAME }}:${{ matrix.dockerfiles }}-${{ matrix.arch }}
