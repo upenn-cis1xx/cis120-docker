@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         arch: ['amd64'] # arm64
-        dockerfiles: ['alpine', 'ubuntu', 'alpine-java', 'alpine-ocaml']
+        dockerfiles: ['alpine', 'ubuntu', 'alpine-java', 'alpine-ocaml', 'gradescope-java', 'gradescope-ocaml']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
