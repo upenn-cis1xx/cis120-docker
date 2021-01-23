@@ -17,3 +17,5 @@ RUN opam install ocamlbuild.0.14.0 yojson.1.7.0 ocamlfind.1.8.1 \
 RUN opam clean
 
 RUN eval $(opam env)
+
+RUN pip3 install pymysql

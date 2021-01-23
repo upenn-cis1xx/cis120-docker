@@ -16,6 +16,8 @@ RUN opam install ocamlbuild.0.14.0 yojson.1.7.0 ocamlfind.1.8.1 \
 
 RUN opam clean
 
+RUN pip3 install pymysql
+
 RUN eval $(opam env)
 RUN ln -svT "/usr/lib/jvm/java-8-openjdk-$(dpkg --print-architecture)" /java_home
 ENV JAVA_HOME=/java_home
