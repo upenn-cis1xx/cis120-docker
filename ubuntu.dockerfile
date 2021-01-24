@@ -5,7 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
-        git m4 bubblewrap make gcc build-essential python3.9 python3-pip bash \
+        git m4 bubblewrap make gcc build-essential python3.9 python3-pip bash pkg-config \
         opam openjdk-8-jdk \
     && rm -rf /var/lib/apt/lists/*
 

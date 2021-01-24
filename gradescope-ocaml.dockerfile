@@ -5,14 +5,14 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
-        git m4 bubblewrap make gcc build-essential python3.9 python3-pip bash \
+        git m4 bubblewrap make gcc build-essential python3.9 python3-pip bash pkg-config \
         opam \
     && rm -rf /var/lib/apt/lists/*
 
 RUN opam init --disable-sandboxing -a --shell=bash
 
 RUN opam install ocamlbuild.0.14.0 yojson.1.7.0 ocamlfind.1.8.1 \
-        camelot merlin js_of_ocaml ocp-indent utop -y
+        camelot merlin js_of_ocaml js_of_ocaml-lwt ocp-indent utop graphics -y
 
 RUN opam clean
 
