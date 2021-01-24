@@ -3,7 +3,7 @@ FROM alpine:3
 ARG TZ=America/New_York
 
 RUN apk update \
-    && apk add --no-cache --update m4 opam bubblewrap make gcc g++ python3 py3-pip git bash git pkgconfig
+    && apk add --no-cache --update m4 opam bubblewrap make gcc g++ python3 py3-pip git bash git pkgconfig libx11-dev
 
 RUN opam init --disable-sandboxing -a --shell=bash
 
