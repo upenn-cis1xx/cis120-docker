@@ -13,18 +13,18 @@ RUN opam init --disable-sandboxing -a --shell=bash
 
 RUN opam install -y \
     camelot.1.7.0 \
-    ocamlbuild.0.14.0 \
-    ocamlfind.1.8.1 \
-    yojson.1.7.0 \
-    merlin.3.4.2 \
-    js_of_ocaml.3.8.0 \
-    js_of_ocaml-lwt.3.8.0 \
-    ocp-indent.1.8.1 \
-    utop.2.7.0 \
-    graphics.5.1.1 \
-    dune.2.8.2 \
-    odoc.1.5.2 \
-    ppx_expect.v0.14.1
+    ocamlbuild \
+    ocamlfind \
+    yojson \
+    merlin \
+    js_of_ocaml \
+    js_of_ocaml-lwt \
+    ocp-indent \
+    utop \
+    graphics \
+    dune \
+    odoc \
+    ppx_expect
 
 RUN opam clean
 
