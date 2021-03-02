@@ -10,7 +10,7 @@ RUN opam init --disable-sandboxing -a --shell=bash
 RUN opam switch create 4.11.1
 
 RUN opam install -y \
-    camelot.1.6.2 \
+    camelot.1.7.0 \
     ocamlbuild.0.14.0 \
     ocamlfind.1.8.1 \
     yojson.1.7.0 \
