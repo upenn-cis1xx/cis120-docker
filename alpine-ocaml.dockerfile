@@ -25,7 +25,6 @@ RUN opam install -y \
     ppx_expect
 
 RUN opam clean
-
 RUN eval $(opam env)
 
 RUN pip3 install pymysql pytz

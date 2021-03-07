@@ -9,6 +9,8 @@ RUN apt-get update \
         openjdk-8-jdk \
     && rm -rf /var/lib/apt/lists/*
 
+RUN pip3 install pymysql pytz
+
 RUN ln -svT "/usr/lib/jvm/java-8-openjdk-$(dpkg --print-architecture)" /java_home
 ENV JAVA_HOME=/java_home
 ENV PATH="$JAVA_HOME/bin:${PATH}"
