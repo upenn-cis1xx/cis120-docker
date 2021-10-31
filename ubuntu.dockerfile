@@ -36,3 +36,5 @@ RUN eval $(opam env)
 RUN ln -svT "/usr/lib/jvm/java-8-openjdk-$(dpkg --print-architecture)" /java_home
 ENV JAVA_HOME=/java_home
 ENV PATH="$JAVA_HOME/bin:${PATH}"
+
+CMD ["/bin/bash"]

@@ -9,3 +9,5 @@ RUN pip3 install pymysql pytz
 
 ENV JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk
 ENV PATH="$JAVA_HOME/bin:${PATH}"
+
+CMD ["/bin/bash"]
