@@ -11,10 +11,10 @@ RUN apt-get update \
 
 RUN opam init --disable-sandboxing -a --shell=bash
 
-RUN opam switch create cis120 ocaml-base-compiler.4.11.1
+RUN opam switch create cis120 ocaml-base-compiler.4.12.0
 
 RUN opam install -y \
-    camelot.1.7.0 \
+    camelot.1.7.1 \
     ocamlbuild \
     ocamlfind \
     yojson \
