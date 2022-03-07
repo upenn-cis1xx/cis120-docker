@@ -6,7 +6,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         git m4 bubblewrap make gcc build-essential python3.9 python3-pip bash pkg-config libx11-dev \
-        opam openjdk-17x-jdk maven \
+        opam openjdk-17-jdk maven \
     && rm -rf /var/lib/apt/lists/*
 
 RUN opam init --disable-sandboxing -a --shell=bash
